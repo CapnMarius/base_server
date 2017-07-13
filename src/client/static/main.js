@@ -42,4 +42,4 @@ class Request {
     }
 }
 
-const testTestEvent = new Request("test.test").send("test").receive(data => console.log("always", data));
+const testTestEvent = new Request("socketTest.test").send("test").receive(data => console.log("always", data));

@@ -1,8 +1,8 @@
-const {minute} = require("../libs/utils");
-const {bash} = require("../libs/shell");
-const sfs = require("../libs/shellfs");
-const {pull, reset} = require("../libs/git");
-const {writeTextFile, readDirDeep} = require("../libs/filesystem");
+const {minute} = require("../../libs/utils");
+const {bash} = require("../../libs/shell");
+const sfs = require("../../libs/shellfs");
+const {pull, reset} = require("../../libs/git");
+const {writeTextFile, readDirDeep} = require("../../libs/filesystem");
 const Validator = require("../../eslint/eslint-validator");
 
 const job = async () => {

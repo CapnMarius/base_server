@@ -1,15 +1,25 @@
-class Request {
-    constructor(action, data) {
+class SocketRequest {
+    constructor(io, socket, action, data) {
         this.action = action;
         this.data = data;
-    }
-}
-
-class SocketRequest extends Request {
-    constructor(io, socket, action, data) {
-        super(action, data);
         this.io = io;
         this.socket = socket;
+    }
+
+    getAction() {
+        return this.action;
+    }
+
+    getData() {
+        return this.data;
+    }
+
+    getIO() {
+        return this.io;
+    }
+
+    getSocket() {
+        return this.socket;
     }
 
     broadcast(data = null) {

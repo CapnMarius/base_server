@@ -1,5 +1,5 @@
-const ESLint = require("../server/libs/eslint");
-const {readDirDeep} = require("../server/libs/filesystem");
+const ESLint = require("../libs/eslint");
+const {readDirDeep} = require("../libs/filesystem");
 
 const buildJsFileList = async location => readDirDeep(location, {
     dir: {
