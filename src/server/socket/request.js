@@ -4,6 +4,9 @@ class SocketRequest {
         this.data = data;
         this.io = io;
         this.socket = socket;
+        this.response = {
+            send: data => this.socket.emit(this.action, data)
+        }
     }
 
     getAction() {
@@ -24,10 +27,6 @@ class SocketRequest {
 
     broadcast(data = null) {
         this.io.emit(this.action, data);
-    }
-
-    response(data = null) {
-        this.socket.emit(this.action, data);
     }
 }
 

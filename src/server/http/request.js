@@ -4,6 +4,7 @@ class HttpRequest {
         this.data = data;
         this.req = req;
         this.res = res;
+        this.response = this.res;
     }
 
     getAction() {
@@ -20,10 +21,6 @@ class HttpRequest {
 
     getRequest() {
         return this.req;
-    }
-
-    response(data = null) {
-        this.res.send(data);
     }
 }
 

@@ -1,3 +1,5 @@
+global.__serverroot = __dirname;
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -15,7 +17,7 @@ const controllerData = {
 };
 
 const loadControllers = async () => {
-    const controllersFiles = await readDirDeep("./src/server/modules", {
+    const controllersFiles = await readDirDeep(__serverroot + "/modules", {
         type: "file",
         file: {whitelist: /Controller.js$/}
     });

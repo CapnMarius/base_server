@@ -1,6 +1,6 @@
-const Base = require("./base");
-const logger = require("../../libs/logger");
-const singleton = require("../../libs/singletonFactory");
+const Base = require("../base");
+const logger = require("../../../libs/logger");
+const singleton = require("../../../libs/singletonFactory");
 
 class HttpTestController extends Base {
     testAction(request) {

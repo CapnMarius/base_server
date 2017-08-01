@@ -12,7 +12,7 @@
   },
   "scripts": {
     "prestart": "git pull && npm install",
-    "start": "node src/index.js",
+    "start": "node src/server/index.js",
     "updater": "node src/services/updater.js",
     "eslint": "node src/eslint/index.js"
   },

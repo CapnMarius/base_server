@@ -5,7 +5,7 @@ const path = require("path");
 const buildRoute = route => {
     const actionArray = route.split(".");
     const action = actionArray.pop() + "Action";
-    const controller = path.join(__dirname, "modules", actionArray.join("/") + "Controller");
+    const controller = path.join(__serverroot, "modules", actionArray.join("/") + "Controller");
     return {controller, action};
 };
 
@@ -22,13 +22,22 @@ class SocketServer {
         io.on("connection", socket => {
             socket.on("route", route => {
                 const {controller, action} = buildRoute(route.action);
-                if (controller === "Controller" || action === "Action") {
-                    socket.emit("error", "Controller / Action not found");
+                if (controller.indexOf("\\Controller") !== -1) {
+                    socket.emit("_error", "Controller not found");
+                    return;
+                } else if (action === "Action") {
+                    socket.emit("_error", "Action not found");
                     return;
                 }
-                const fn = getFunction(controller, action);
-                const request = new Request(io, socket, route.action, route.data);
-                invoke(fn, request).catch(err => logger.log(err));
+                try {
+                    const fn = getFunction(controller, action);
+                    const request = new Request(io, socket, route.action, route.data);
+                    invoke(fn, request).catch(err => logger.log(err));
+                } catch (err) {
+                    console.error(err.message);
+                    socket.emit("_error", "Controller '" + route.action + "' not found");
+                    return;
+                }
             });
         });
     }
